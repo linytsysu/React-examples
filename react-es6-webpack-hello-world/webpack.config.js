@@ -8,19 +8,22 @@ var APP_PATH = path.resolve(__dirname, './components/index.js');
 var BUILD_PATH = path.resolve(__dirname, './build');
 
 module.exports = {
-    entry: APP_PATH,
+    entry: ['webpack/hot/dev-server', 'webpack-dev-server/client?http://localhost:8080', APP_PATH],
     output: {
         path: BUILD_PATH,
         filename: 'bundle.js'
     },
     module: {
         loaders: [{
-            test: /\.js?$/,
+            test: /\.js$/,
             exclude: /node_modules/,
             loader: 'babel',
             query: {
                 presets: ['es2015', 'react']
             }
+        }, {
+            test: /\.less/,
+            loader: 'style!css!less'
         }]
     }
 }
