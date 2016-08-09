@@ -27,7 +27,7 @@ class TodoTextInput extends Component {
 
     render() {
         return (
-            <input type='text' onChange={this.handleChange} onKeyDown={this.handleKeyDown} />
+            <input id='todo-text-input' type='text' onChange={this.handleChange} onKeyDown={this.handleKeyDown} />
         );
     }
 }

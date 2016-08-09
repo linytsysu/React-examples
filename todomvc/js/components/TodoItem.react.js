@@ -1,15 +1,7 @@
 import React, {Component} from 'react';
+import classNames from 'classnames';
 
 import TodoActions from '../actions/TodoActions';
-
-let todoItemStyle = {
-    checked: {
-        color: "#C8C7CC"
-    },
-    unchecked: {
-        color: "#000000"
-    }
-}
 
 class TodoItem extends Component {
     constructor(props) {
@@ -28,16 +20,11 @@ class TodoItem extends Component {
 
     render() {
         let textStyle;
-        if (this.props.todo.complete) {
-            textStyle = todoItemStyle.checked;
-        } else {
-            textStyle = todoItemStyle.unchecked;
-        }
         return (
-            <div>
+            <div className={ classNames( 'todo-item', {'completed-todo-item': this.props.todo.complete} ) } >
                 <input type='checkbox' onChange={this.onCheckboxChange} />
-                <span style={textStyle}>{this.props.todo.text}</span>
-                <input type='button' onClick={this.onButtonClick} value='remove' />
+                <span className='todo-text'>{this.props.todo.text}</span>
+                <button className='remove-btn' onClick={this.onButtonClick}></button>
             </div>
         );
     }

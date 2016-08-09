@@ -35,9 +35,6 @@ let CollectionStore = assign({}, EventEmitter.prototype, {
     },
     getTodos: function() {
         return todos;
-    },
-    getTodoIds: function() {
-        return Object.keys(todos);
     }
 });
 

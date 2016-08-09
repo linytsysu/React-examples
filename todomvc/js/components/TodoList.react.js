@@ -6,37 +6,19 @@ import TodoStore from '../stores/TodoStore';
 class TodoList extends Component {
     constructor(props) {
         super(props);
-        this.state = {
-            todoItems: TodoStore.getTodos()
-        }
         this.getTodoItemElement = this.getTodoItemElement.bind(this);
-        this.onChange = this.onChange.bind(this);
-    }
-
-    componentDidMount() {
-        TodoStore.addChangeListener(this.onChange);
-    }
-
-    componentWillUnmount() {
-        TodoStore.removeChangeListener(this.onChange);
-    }
-
-    onChange() {
-        this.setState({
-            todoItems: TodoStore.getTodos()
-        });
     }
 
     getTodoItemElement(id) {
-        let todo = this.state.todoItems[id];
+        let todo = this.props.todos[id];
         return <TodoItem todo={todo} key={id} />
     }
 
     render() {
-        let todoIds = TodoStore.getTodoIds();
+        let todoIds = Object.keys(this.props.todos);
         let todoItemElements = todoIds.map(this.getTodoItemElement);
         return (
-            <div>
+            <div id='todo-list'>
                 {todoItemElements}
             </div>
         );
