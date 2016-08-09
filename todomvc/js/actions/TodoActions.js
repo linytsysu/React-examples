@@ -2,7 +2,6 @@ import AppDispatcher from '../dispatcher/AppDispatcher';
 
 export default {
     create: function(text) {
-        console.log(text);
         AppDispatcher.dispatch({
             type: 'TODO_CREATE',
             text: text

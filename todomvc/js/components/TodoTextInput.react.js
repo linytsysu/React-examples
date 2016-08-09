@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 
 import TodoActions from '../actions/TodoActions';
+import TodoStore from '../stores/TodoStore';
 
 class TodoTextInput extends Component {
     constructor(props) {
@@ -15,6 +16,9 @@ class TodoTextInput extends Component {
     }
 
     handleKeyDown(event) {
+        if (event.target.value === '') {
+            return;
+        }
         if (event.keyCode === 13) {
             TodoActions.create(event.target.value);
             event.target.value = '';

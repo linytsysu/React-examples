@@ -19,8 +19,8 @@ function removeTodo(todoId) {
     delete todos[todoId];
 }
 
-function updateTodo(todo) {
-    todos[todo.id] = assign({}, todos[todo.id], todo);
+function updateTodo(id, update) {
+    todos[id] = assign({}, todos[id], update);
 }
 
 let CollectionStore = assign({}, EventEmitter.prototype, {
@@ -35,6 +35,9 @@ let CollectionStore = assign({}, EventEmitter.prototype, {
     },
     getTodos: function() {
         return todos;
+    },
+    getTodoIds: function() {
+        return Object.keys(todos);
     }
 });
 
