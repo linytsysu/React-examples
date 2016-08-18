@@ -5,7 +5,7 @@ var node_modules = path.resolve(__dirname, './node_modules');
 
 var ROOT_PATH = path.resolve(__dirname);
 var APP_PATH = path.resolve(__dirname, './index.js');
-var BUILD_PATH = path.resolve(__dirname, './');
+var BUILD_PATH = path.resolve(__dirname, './public/');
 
 module.exports = {
     entry: [APP_PATH],
