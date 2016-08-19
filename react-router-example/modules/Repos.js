@@ -1,22 +1,38 @@
-import React, {Component} from 'react'
-
+import React from 'react'
 import NavLink from './NavLink'
 
-class Repos extends Component {
-    render() {
-        return (
-            <div>
-                <h2>Repos</h2>
+export default React.createClass({
+  contextTypes: {
+    router: React.PropTypes.object
+  },
 
-                <ul>
-                    <li><NavLink to='/repos/reactjs/react-router'>React Router</NavLink></li>
-                    <li><NavLink to='/repos/facebook/react'>React</NavLink></li>
-                </ul>
+  handleSubmit(event) {
+    event.preventDefault()
+    const userName = event.target.elements[0].value
+    const repo = event.target.elements[1].value
+    const path = `/repos/${userName}/${repo}`
+    console.log(path)
+    this.context.router.push(path)
+  },
 
-                {this.props.children}
-            </div>
-        );
-    }
-}
+  render() {
+    return (
+      <div>
+        <h2>Repos</h2>
+        <ul>
+          <li><NavLink to="/repos/reactjs/react-router">React Router</NavLink></li>
+          <li><NavLink to="/repos/facebook/react">React</NavLink></li>
 
-export default Repos;
+          <li>
+            <form onSubmit={this.handleSubmit}>
+              <input type='text' placeholder='userName' /> / {' '}
+              <input type='text' placeholder='repo' />{' '}
+              <button type='submit'>Go</button>
+            </form>
+          </li>
+        </ul>
+        {this.props.children}
+      </div>
+    )
+  }
+})

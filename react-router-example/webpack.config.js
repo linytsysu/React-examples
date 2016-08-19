@@ -1,23 +1,23 @@
-var path = require('path');
-var webpack = require('webpack');
-
-var node_modules = path.resolve(__dirname, './node_modules');
-
-var ROOT_PATH = path.resolve(__dirname);
-var APP_PATH = path.resolve(__dirname, './index.js');
-var BUILD_PATH = path.resolve(__dirname, './public/');
+var webpack = require('webpack')
 
 module.exports = {
-    entry: [APP_PATH],
-    output: {
-        path: BUILD_PATH,
-        filename: 'bundle.js'
-    },
-    module: {
-        loaders: [{
-            test: /\.js$/,
-            exclude: /node_modules/,
-            loaders: ['react-hot', 'babel?presets[]=es2015,presets[]=react']
-        }]
-    }
+  entry: './index.js',
+
+  output: {
+    path: 'public',
+    filename: 'bundle.js',
+    publicPath: '/'
+  },
+
+  plugins: process.env.NODE_ENV === 'production' ? [
+    new webpack.optimize.DedupePlugin(),
+    new webpack.optimize.OccurrenceOrderPlugin(),
+    new webpack.optimize.UglifyJsPlugin()
+  ] : [],
+
+  module: {
+    loaders: [
+      { test: /\.js$/, exclude: /node_modules/, loaders: ['react-hot', 'babel-loader?presets[]=es2015&presets[]=react'] }
+    ]
+  }
 }
