@@ -6,7 +6,7 @@ React project building with gulp/browserify.
 
 ### how-to-run
 
-+ Install the dependencies by runing:
++ Install the dependencies:
 ```
 npm install
 ```
