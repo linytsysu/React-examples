@@ -17,7 +17,7 @@ module.exports = {
         loaders: [{
             test: /\.js$/,
             exclude: /node_modules/,
-            loaders: ['react-hot', 'babel?presets[]=es2015,presets[]=react']
+            loader: 'babel?presets[]=es2015,presets[]=react'
         }, {
             test: /\.less/,
             loader: 'style!css!less'
